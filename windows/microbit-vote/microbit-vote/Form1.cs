@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -182,7 +182,7 @@ namespace microbit_vote
                                 unique = false;
                         }
 
-                        if (unique)
+                        if (unique && quizRunning)
                         {
                             votes.Add(v);
                             this.SetText("VOTES IN: " + votes.Count);
@@ -200,6 +200,11 @@ namespace microbit_vote
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            if(this.newAnswerBox.Text.Length < 1)
+            {
+                MessageBox.Show("Please add some text to this answer");
+                return;
+            }
             this.possibleAnswerListBox.Items.Add(this.newAnswerBox.Text);
             this.newAnswerBox.Clear();
         }
